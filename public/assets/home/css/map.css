@@ -1,0 +1,398 @@
+
+@media screen and (min-width: 576px) {
+   .marker {
+      background-image: url("/assets/home/img/marker.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+   }
+   
+   .marker.active {
+      background-image: url("/assets/home/img/marker-active.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 15px;
+      height: 15px;
+   }
+   
+   #mark-aceh {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+   }
+   
+   #mark-bali {
+      position: absolute;
+      top: 145px;
+      left: 210px;
+   }
+   
+   #mark-banten {
+      position: absolute;
+      top: 125px;
+      left: 117px;
+   }
+   
+   #mark-bengkulu {
+      position: absolute;
+      top: 100px;
+      left: 80px;
+   }
+   
+   #mark-jatim {
+      position: absolute;
+      top: 140px;
+      left: 180px;
+   }
+   
+   #mark-gorontalo {
+      position: absolute;
+      top: 50px;
+      left: 285px;
+   }
+   
+   #mark-sumut {
+      position: absolute;
+      top: 35px;
+      left: 45px;
+   }
+   
+   #mark-riau {
+      position: absolute;
+      top: 50px;
+      left: 65px;
+   }
+   
+   #mark-sumbar {
+      position: absolute;
+      top: 65px;
+      left: 58px;
+   }
+   
+   #mark-kep-riau {
+      position: absolute;
+      top: 58px;
+      left: 102px;
+   }
+   
+   #mark-sumsel {
+      position: absolute;
+      top: 95px;
+      left: 100px;
+   }
+   
+   #mark-lampung {
+      position: absolute;
+      top: 115px;
+      left: 105px;
+   }
+   
+   #mark-kep-bangka-belitung {
+      position: absolute;
+      top: 83px;
+      left: 115px;
+   }
+   
+   #mark-kalbar {
+      position: absolute;
+      top: 60px;
+      left: 170px;
+   }
+   
+   #mark-kaltim {
+      position: absolute;
+      top: 55px;
+      left: 225px;
+   }
+   
+   #mark-kalsel {
+      position: absolute;
+      top: 90px;
+      left: 215px;
+   }
+   
+   #mark-sulut {
+      position: absolute;
+      top: 50px;
+      left: 305px;
+   }
+   
+   #mark-sulteng {
+      position: absolute;
+      top: 75px;
+      left: 262px;
+   }
+   
+   #mark-sultengg {
+      position: absolute;
+      top: 100px;
+      left: 280px;
+   }
+   
+   #mark-sulsel {
+      position: absolute;
+      top: 105px;
+      left: 263px;
+   }
+   
+   #mark-sulbar {
+      position: absolute;
+      top: 90px;
+      left: 252px;
+   }
+   
+   #mark-malkur {
+      position: absolute;
+      top: 55px;
+      left: 344px;
+   }
+   
+   #mark-papbar {
+      position: absolute;
+      top: 75px;
+      left: 400px;
+   }
+   
+   #mark-papua {
+      position: absolute;
+      top: 100px;
+      left: 450px;
+   }
+   
+   #mark-maluku {
+      position: absolute;
+      top: 92px;
+      left: 360px;
+   }
+   
+   #mark-ntt {
+      position: absolute;
+      top: 148px;
+      left: 275px;
+   }
+   
+   #mark-ntb {
+      position: absolute;
+      top: 150px;
+      left: 235px;
+   }
+   
+   #mark-yogyakarta {
+      position: absolute;
+      top: 140px;
+      left: 165px;
+   }
+   
+   #mark-jateng {
+      position: absolute;
+      top: 130px;
+      left: 170px;
+   }
+   
+   #mark-jabar {
+      position: absolute;
+      top: 130px;
+      left: 135px;
+   }   
+}
+
+@media screen and (min-width: 768px) {
+   .marker {
+      background-image: url("/assets/home/img/marker.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+   }
+   
+   .marker.active {
+      background-image: url("/assets/home/img/marker-active.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 30px;
+      height: 30px;
+   }
+   
+   #mark-aceh {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+   }
+   
+   #mark-bali {
+      position: absolute;
+      top: 145px;
+      left: 210px;
+   }
+   
+   #mark-banten {
+      position: absolute;
+      top: 125px;
+      left: 117px;
+   }
+   
+   #mark-bengkulu {
+      position: absolute;
+      top: 100px;
+      left: 80px;
+   }
+   
+   #mark-jatim {
+      position: absolute;
+      top: 140px;
+      left: 180px;
+   }
+   
+   #mark-gorontalo {
+      position: absolute;
+      top: 50px;
+      left: 285px;
+   }
+   
+   #mark-sumut {
+      position: absolute;
+      top: 35px;
+      left: 45px;
+   }
+   
+   #mark-riau {
+      position: absolute;
+      top: 50px;
+      left: 65px;
+   }
+   
+   #mark-sumbar {
+      position: absolute;
+      top: 65px;
+      left: 58px;
+   }
+   
+   #mark-kep-riau {
+      position: absolute;
+      top: 58px;
+      left: 102px;
+   }
+   
+   #mark-sumsel {
+      position: absolute;
+      top: 95px;
+      left: 100px;
+   }
+   
+   #mark-lampung {
+      position: absolute;
+      top: 115px;
+      left: 105px;
+   }
+   
+   #mark-kep-bangka-belitung {
+      position: absolute;
+      top: 83px;
+      left: 115px;
+   }
+   
+   #mark-kalbar {
+      position: absolute;
+      top: 60px;
+      left: 170px;
+   }
+   
+   #mark-kaltim {
+      position: absolute;
+      top: 55px;
+      left: 225px;
+   }
+   
+   #mark-kalsel {
+      position: absolute;
+      top: 90px;
+      left: 215px;
+   }
+   
+   #mark-sulut {
+      position: absolute;
+      top: 50px;
+      left: 305px;
+   }
+   
+   #mark-sulteng {
+      position: absolute;
+      top: 75px;
+      left: 262px;
+   }
+   
+   #mark-sultengg {
+      position: absolute;
+      top: 100px;
+      left: 280px;
+   }
+   
+   #mark-sulsel {
+      position: absolute;
+      top: 105px;
+      left: 263px;
+   }
+   
+   #mark-sulbar {
+      position: absolute;
+      top: 90px;
+      left: 252px;
+   }
+   
+   #mark-malkur {
+      position: absolute;
+      top: 55px;
+      left: 344px;
+   }
+   
+   #mark-papbar {
+      position: absolute;
+      top: 75px;
+      left: 400px;
+   }
+   
+   #mark-papua {
+      position: absolute;
+      top: 100px;
+      left: 450px;
+   }
+   
+   #mark-maluku {
+      position: absolute;
+      top: 92px;
+      left: 360px;
+   }
+   
+   #mark-ntt {
+      position: absolute;
+      top: 148px;
+      left: 275px;
+   }
+   
+   #mark-ntb {
+      position: absolute;
+      top: 150px;
+      left: 235px;
+   }
+   
+   #mark-yogyakarta {
+      position: absolute;
+      top: 140px;
+      left: 165px;
+   }
+   
+   #mark-jateng {
+      position: absolute;
+      top: 130px;
+      left: 170px;
+   }
+   
+   #mark-jabar {
+      position: absolute;
+      top: 130px;
+      left: 135px;
+   }   
+}

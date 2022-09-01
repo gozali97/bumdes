@@ -1,0 +1,58 @@
+
+.sidebar{
+    background-color: #0EA44D;
+}
+.bumdes-logo{
+    width: 53px;
+    height: 53px;
+    object-fit: contain;
+}
+.nama-login{
+    color: white;
+    text-decoration: none;
+}
+.nama-login:hover {
+    color: white;
+}
+.menu-aside {
+    background-color: #0EA44D;
+}
+.sweet-warning{
+    background-color: #0EA44D;
+}
+   
+.sweet-warning:not([disabled]):hover{
+    background-color: #1C8E4C;
+}
+.bg-card-primer {
+    background-color: #0EA44D;
+    color: white;
+}
+.page-item.active .page-link {
+    color: #fff !important;
+    background-color: #1C8E4C !important;
+    border-color: #1C8E4C !important; 
+}
+
+.page-link {
+    color: #000 !important;
+    background-color: #fff !important;
+    border: 1px solid #dee2e6 !important; 
+}
+
+.page-link:hover {
+    color: #fff !important;
+    background-color: #000 !important;
+    border-color: #000 !important; 
+}
+.btn-kolom-lihat {
+    background-color: #0EA44D;
+    color: white;
+}
+.btn-kolom-lihat:hover {
+    color: white;
+}
+.btn-print {
+    background-color: #1C8E4C;
+    color: white;
+}

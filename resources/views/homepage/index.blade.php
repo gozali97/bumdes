@@ -1,0 +1,14 @@
+@extends('layouts.layout')
+@section('css')
+@endsection
+@section('content')
+   @include('homepage.slider')
+   @include('homepage.program')
+   @include('homepage.mitra')
+   @include('homepage.newsletter')
+   @include('homepage.article')
+   @include('homepage.banner')
+   @include('homepage.popup')
+@endsection
+@section('js')
+@endsection
