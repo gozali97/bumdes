@@ -2,22 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Schedule extends Model
 {
-   use HasFactory;
+    use HasFactory;
 
-   public function getLocationAttribute($value)
-   {
-      return Str::remove(['<div>','</div>'], $value);
-   }
+    protected $fillable = [
+        'training_id',
+        'event_date',
+        'event_duration',
+        'event_time',
+        'location',
+        'last_registration',
+    ];
 
-   public function getEventDateAttribute($value)
-   {
-      return Carbon::parse($value)->isoFormat('D MMMM Y');
-   }
+    public function training()
+    {
+        return $this->belongsTo(Training::class);
+    }
 }

@@ -9,9 +9,8 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
 use AzisHapidin\IndoRegion\Traits\RegencyTrait;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Regency Model.
@@ -54,10 +53,5 @@ class Regency extends Model
     public function districts()
     {
         return $this->hasMany(District::class);
-    }
-
-    public function getNameAttribute($value)
-    {
-      return Str::title($value);
     }
 }

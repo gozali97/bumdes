@@ -44,7 +44,7 @@
                               <th>E-Mail</th>
                               <th>No Hp / Telp</th>
                               <th>Daftar Sebagai</th>
-                              <th>Provinsi</th>
+                              <!--<th>Provinsi</th>-->
                               <th>Aksi</th>
                             </tr>
                             </thead>
@@ -53,10 +53,10 @@
                             <tr>
                               <td>{{$loop->index +1 }}</td>
                               <td>{{ $user->name }}</td>
-                              <td>{{ $user->profil->nama_instansi}}</td>
-                              <td>{{ $user->profil->jabatan }}</td>
+                              <td>{{ $user->nama_instansi}}</td>
+                              <td>{{ $user->jabatan }}</td>
                               <td>{{ $user->email }}</td>
-                              <td>0{{ $user->profil->no_telp }}</td>
+                              <td>0{{ $user->no_telp }}</td>
                               @if ($user->hak_akses == 1)
                               <td>Pegawai Bumdes</td>
                               @elseif($user->hak_akses == 2)
@@ -64,7 +64,7 @@
                               @elseif($user->hak_akses == 3)
                               <td>Umum</td>
                               @endif
-                              <td>{{ $user->profil->provinsi->name }}</td>
+                              <!--<td>{{ $user->province_id }}</td>-->
                               <td>
                                 <div class="row">
                                   <div class="col-3">

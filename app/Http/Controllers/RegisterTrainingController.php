@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterTrainingController extends Controller
 {
+  
+   //view training on dashboard
+   public function dashboard()
+   {
+       $registerTrainings = RegisterTraining::orderBy('id', 'desc')->get();
+       return view('admin.training.dashboard', compact('registerTrainings'));
+   }
+  
    // view register training
    public function index()
    {
@@ -130,7 +138,7 @@ class RegisterTrainingController extends Controller
    public function getScheduleByTraining($training_id)
    {
       session(['training_id' => $training_id]);
-      return Schedule::where('training_id', $training_id)->whereDate('event_date', '<=', Carbon::now())->get();
+      return Schedule::where('training_id', $training_id)->whereDate('event_date', '>=', Carbon::now())->get();
    }
 
    // get schedule by id

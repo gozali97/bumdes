@@ -9,8 +9,19 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="{{ asset('/assets/admin/plugins/fontawesome-free/css/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/assets/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+  
+  @stack('select2style')
+
   <link rel="stylesheet" href="{{ asset('/assets/admin/dist/css/adminlte.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/assets/admin/css/style.css') }}">
+  
+  {{-- summernote --}}
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+
+{{-- trix --}}
+<link rel="stylesheet" type="text/css" href="{{ asset('/assets/admin/trix/trix.css') }}">
+<script type="text/javascript" src="{{ asset('/assets/admin/trix/trix.js') }}"></script>
+
   @yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" style="font-family: 'Poppins', sans-serif;">
@@ -18,17 +29,12 @@
     @yield('content')
     <footer class="main-footer">
       <div class="float-right d-none d-sm-block">
-        <b>Version</b> 3.2.0
+        <b>Syncore.co.id</b>
       </div>
-      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+      <strong>Copyright &copy; 2022 <a href="">Bumdes.id</a>.</strong> All rights reserved.
     </footer>
 </div>
-<script src="{{ asset('/assets/admin/plugins/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('/assets/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-<script src="{{ asset('/assets/admin/dist/js/adminlte.min.js') }}"></script>
-<script src="{{ asset('/assets/admin/dist/js/demo.js') }}"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@include('admin.layouts.script')
 <script>
   $(document).on('click', '#confirm-logout', function(e) {
   e.preventDefault();

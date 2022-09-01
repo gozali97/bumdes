@@ -44,8 +44,8 @@ class AuthController extends Controller
          return redirect()->route('verification');
       }
    }
-
-   public function resendOtp(Request $request)
+   
+    public function resendOtp(Request $request)
    {
       $otp = rand(1111, 9999);
       $request->session()->put('otp', $otp);
@@ -53,38 +53,33 @@ class AuthController extends Controller
       Mail::to($request->session()->get('email'))->send(new KirimOtp($otp));
       return redirect()->route('verification');
    }
-
    public function verification(Request $request)
    {
       $email = $request->session()->get('email');
-      if (!$email) {
-         return redirect()->route('daftar');
+      if ($email == null) {
+          return redirect()->route('daftar');
       } else {
          return view('authentikasi.register.step2', ['email' => $email]);
       }
    }
-   public function proses_verification(Request $request)
+   public function prosesVerification(Request $request)
    {
       $kode = $request->otp1 . $request->otp2 . $request->otp3 . $request->otp4;
+    // $kode = $request->otp;
       $otp = $request->session()->get('otp');
       if ($otp == $kode) {
-         // $user = User::where('email', $request->session()->get('email'))->where('email_verified_at', '!=', '')->first();
-         // if (!$user) {
-         //    Alert::success('Berhasil', 'Email anda sudah terverifikasi');
-         //    return redirect()->route('profil_satu');
-         // } else {
-         $user = new User();
-         $user->create([
-            'name' => '',
-            'email' => $request->session()->get('email'),
-            'password' => '',
-            'hak_akses' => '1'
-         ]);
-         // $user->email = $request->session()->get('email');
-         // $user->save();
-         Alert::success('Berhasil', 'Email anda sudah terverifikasi');
          return redirect()->route('profil_satu');
-         // }
+         $user = User::where('email', $request->session()->get('email'))->where('email_verified_at', '!=', NULL)->first();
+         if ($user == null) {
+            // Alert::success('Berhasil', 'Email anda sudah terverifikasi');
+            return redirect()->route('profil_satu');
+         } else {
+            $user = new User();
+            $user->email = $request->session()->get('email');
+            $user->save();
+            Alert::success('Berhasil', 'Email anda sudah terverifikasi');
+            return redirect()->route('profil_satu');
+         }
       } else {
          Alert::error('OTP Salah', 'OTP yang anda masukkan salah');
          return redirect()->back();
@@ -93,12 +88,13 @@ class AuthController extends Controller
    public function profil_satu(Request $request)
    {
       $email = $request->session()->get('email');
-      $count_user = User::where('email', $email)->count();
-      if ($count_user == 0) {
-         return redirect()->route('daftar');
-      } else {
-         return view('authentikasi.register.step3');
-      }
+      return view('authentikasi.register.step3');
+    //   $count_user = User::where('email', $email)->count();
+    //   if ($count_user == 0) {
+    //      return redirect()->route('daftar');
+    //   } else {
+    //      return view('authentikasi.register.step3');
+    //   }
    }
    public function proses_profilsatu(Request $request)
    {
@@ -121,14 +117,17 @@ class AuthController extends Controller
    public function profil_dua(Request $request)
    {
       $email = $request->session()->get('email');
-      $count_user = User::where('email', $email)->count();
-      if ($count_user == 0) {
-         return redirect()->route('daftar');
-      } else {
-         $provinces = Province::all();
-         $regencies = Regency::all();
-         return view('authentikasi.register.step4', ['provinces' => $provinces, 'regencies' => $regencies]);
-      }
+      $provinces = Province::all();
+      $regencies = Regency::all();
+      return view('authentikasi.register.step4', ['provinces' => $provinces, 'regencies' => $regencies]);
+    //   $count_user = User::where('email', $email)->count();
+    //   if ($count_user == 0) {
+    //      return redirect()->route('daftar');
+    //   } else {
+    //      $provinces = Province::all();
+    //      $regencies = Regency::all();
+    //      return view('authentikasi.register.step4', ['provinces' => $provinces, 'regencies' => $regencies]);
+    //   }
    }
    public function get_kota($id)
    {
@@ -157,12 +156,13 @@ class AuthController extends Controller
    public function profil_tiga(Request $request)
    {
       $email = $request->session()->get('email');
-      $count_user = User::where('email', $email)->count();
-      if ($count_user == 0) {
-         return redirect()->route('daftar');
-      } else {
-         return view('authentikasi.register.step5');
-      }
+      return view('authentikasi.register.step5');
+    //   $count_user = User::where('email', $email)->count();
+    //   if ($count_user == 0) {
+    //      return redirect()->route('daftar');
+    //   } else {
+    //      return view('authentikasi.register.step5');
+    //   }
    }
    public function proses_profiltiga(Request $request)
    {
@@ -177,33 +177,56 @@ class AuthController extends Controller
          'konfirmasi_password' => 'min:8',
       ], $messages);
 
-      $user = User::where('email', $request->session()->get('email'))->first();
-      $id_user = $user->id;
+     // return $user = User::where('email', $request->session()->get('email'))->first();
+    //   $id_user = $user->id;
 
-      $profil = new Profil();
-      $profil->user_id = $id_user;
-      $profil->tgl_lahir = $request->session()->get('tgl_lahir');
-      $profil->jekel = $request->session()->get('jekel');
-      $profil->nama_instansi = $request->session()->get('nama_bumdes');
-      $profil->jabatan = $request->session()->get('jabatan');
-      $profil->province_id = $request->session()->get('provinsi');
-      $profil->city_id = $request->session()->get('kota');
-      $profil->no_telp = $request->no_ponsel;
-      $profil->save();
+    //   $profil = new Profil();
+    //   $profil->user_id = $id_user;
+    //   $profil->tgl_lahir = $request->session()->get('tgl_lahir');
+    //   $profil->jekel = $request->session()->get('jekel');
+    //   $profil->nama_instansi = $request->session()->get('nama_bumdes');
+    //   $profil->jabatan = $request->session()->get('jabatan');
+    //   $profil->province_id = $request->session()->get('provinsi');
+    //   $profil->city_id = $request->session()->get('kota');
+    //   $profil->no_telp = $request->no_ponsel;
+    //   $profil->save();
+    
+    $user = new User();
+    $user->email = $request->session()->get('email');
+    $user->tgl_lahir = $request->session()->get('tgl_lahir');
+    $user->jekel = $request->session()->get('jekel');
+    $user->nama_instansi = $request->session()->get('nama_bumdes');
+    $user->jabatan = $request->session()->get('jabatan');
+    $user->province_id = $request->session()->get('provinsi');
+    $user->city_id = $request->session()->get('kota');
+    $user->no_telp = $request->no_ponsel;
+    $user->name = $request->session()->get('nama_lengkap');
+    $user->password = bcrypt($request->password);
+    $role = $request->session()->get('daftarsebagai');
+    if ($role == "Pegawai Bumdes") {
+       $user->hak_akses = 1;
+    } else if ($role == "Pegawai Desa") {
+       $user->hak_akses = 2;
+    } else if ($role == "Umum") {
+       $user->hak_akses = 3;
+    }
+    $user->email_verified_at = date('d-m-Y  h:i:s');
+    $user->save();
 
-      $edit_user = User::find($id_user);
-      $edit_user->name = $request->session()->get('nama_lengkap');
-      $edit_user->password = bcrypt($request->password);
-      $role = $request->session()->get('daftarsebagai');
-      if ($role == "Pegawai Bumdes") {
-         $edit_user->hak_akses = 1;
-      } else if ($role == "Pegawai Desa") {
-         $edit_user->hak_akses = 2;
-      } else if ($role == "Umum") {
-         $edit_user->hak_akses = 3;
-      }
-      $edit_user->email_verified_at = date('d-m-Y  h:i:s');
-      $edit_user->save();
+    // //   $edit_user = User::find($id_user);
+    //   $edit_user = User::find($id);
+    //   $edit_user->name = $request->session()->get('nama_lengkap');
+    //   $edit_user->password = bcrypt($request->password);
+    //   $role = $request->session()->get('daftarsebagai');
+    //   if ($role == "Pegawai Bumdes") {
+    //      $edit_user->hak_akses = 1;
+    //   } else if ($role == "Pegawai Desa") {
+    //      $edit_user->hak_akses = 2;
+    //   } else if ($role == "Umum") {
+    //      $edit_user->hak_akses = 3;
+    //   }
+    //   $edit_user->email_verified_at = date('d-m-Y  h:i:s');
+    //   $edit_user->save();
       return redirect()->route('selesai');
    }
    public function selesai()
@@ -213,14 +236,23 @@ class AuthController extends Controller
    public function login()
    {
       if ($user = Auth::user()) {
+        //  if ($user->hak_akses == '0') {
+        //     return redirect()->intended('admin');
+        //  } elseif ($user->hak_akses == '1') {
+        //     return redirect()->intended('pegawai_bumdes');
+        //  } elseif ($user->hak_akses == '2') {
+        //     return redirect()->intended('pegawai_desa');
+        //  } elseif ($user->level == '3') {
+        //     return redirect()->intended('umum');
+        //  }
          if ($user->hak_akses == '0') {
             return redirect()->intended('admin');
          } elseif ($user->hak_akses == '1') {
-            return redirect()->intended('pegawai_bumdes');
+            return redirect()->route('home');
          } elseif ($user->hak_akses == '2') {
-            return redirect()->intended('pegawai_desa');
+            return redirect()->route('home');;
          } elseif ($user->level == '3') {
-            return redirect()->intended('umum');
+            return redirect()->route('home');;
          }
       }
       return view('authentikasi.login.login');
@@ -239,14 +271,23 @@ class AuthController extends Controller
       $ingat = $request->remember ? true : false;
       if (Auth::attempt($kredensil, $ingat)) {
          $user = Auth::user();
+        //  if ($user->hak_akses == '0') {
+        //     return redirect()->intended('admin');
+        //  } elseif ($user->hak_akses == '1') {
+        //     return redirect()->intended('pegawai_bumdes');
+        //  } elseif ($user->hak_akses == '2') {
+        //     return redirect()->intended('pegawai_desa');
+        //  } elseif ($user->hak_akses == '3') {
+        //     return redirect()->intended('umum');
+        //  }
          if ($user->hak_akses == '0') {
             return redirect()->intended('admin');
          } elseif ($user->hak_akses == '1') {
-            return redirect()->intended('pegawai_bumdes');
+            return redirect()->route('home');
          } elseif ($user->hak_akses == '2') {
-            return redirect()->intended('pegawai_desa');
-         } elseif ($user->hak_akses == '3') {
-            return redirect()->intended('umum');
+            return redirect()->route('home');;
+         } elseif ($user->level == '3') {
+            return redirect()->route('home');;
          }
          return redirect()->intended('/login');
       }

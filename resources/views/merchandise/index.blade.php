@@ -37,9 +37,9 @@
                             <label for="search" class="small mb-2" style="font-weight: 600">Kategori</label>
                             <select class="form-select rounded-4" id="category" name="category">
                                 <option value="">Semua Kategori</option>
-                                {{-- @foreach ($categories as $category)
-                                 <option value="{{ $category->slug }}" {{ request()->category == $category->slug ? 'selected' : '' }}>{{ $category->name }}</option>
-                                @endforeach --}}
+                                @foreach ($category as $kategori)
+                                <option value="{{ $kategori->slug }}" {{ request()->kategori == $kategori->slug ? 'selected' : '' }}>{{ $kategori->nama_produk }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-lg-3 mb-lg-0 mb-3">
@@ -66,11 +66,11 @@
     <div class="bg-f7">
         <div class="container pb-5">
             <div class="row">
-                @foreach ( $data as $p )
+                @forelse ( $data as $p )
                 <div class="col-md-6 col-lg-4 mb-4">
                     <a href="/showmerch/{{ $p->id }}" class="text-reset text-decoration-none">
                         <div class="card rounded-4 p-2">
-                            <img src="{{ asset('assets/home/img/'.$p->images) }}" alt="" class="img-fluid">
+                            <img src="{{ asset('assets/home/img/merchandise/'.$p->images) }}" alt="" class="img-fluid">
                             <div class="card-body text-center">
                                 <p class="fs-5">{{$p->nama_produk}}</p>
                             </div>
@@ -87,8 +87,16 @@
                         </div>
                         {{-- </a> --}}
                 </div>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="4">
+                        <h6 class="m-0 p-0 text-center">Data tidak ada</h6>
+                    </td>
+                </tr>
+                @endforelse
             </div>
         </div>
 </section>
+@endsection
+@section('js')
 @endsection

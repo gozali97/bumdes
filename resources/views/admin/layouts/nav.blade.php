@@ -6,9 +6,16 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" id="confirm-logout" href="#" role="button">
-            <i class="fas fa-power-off"></i>
-        </a>
+        <a class="nav-link" id="confirm-logout" href="{{ route('logout') }}" role="button"
+                onclick="event.preventDefault();
+                 document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+                <i class="fas fa-power-off"></i>
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
       </li>
     </ul>
 </nav>

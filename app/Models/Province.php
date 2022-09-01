@@ -9,9 +9,8 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
 use AzisHapidin\IndoRegion\Traits\ProvinceTrait;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Province Model.
@@ -40,8 +39,4 @@ class Province extends Model
         return $this->hasMany(Profil::class);
     }
 
-    public function getNameAttribute($value)
-    {
-      return Str::title($value);
-    }
 }
