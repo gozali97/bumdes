@@ -43,7 +43,7 @@
                     <a class="nav-link dropdown-toggle" onclick="layanan()" href="#">Layanan Digital</a>
                 </li>
                 <li class="nav-item item-nav">
-                    <a class="nav-link" href="{{ url('merchandise')}}">Merchandise</a>
+                    <a class="nav-link" href="{{ url('merch')}}">Merchandise</a>
                 </li>
                 <li class="nav-item item-nav">
                     <a class="nav-link dropdown-toggle" onclick="berita()" href="#">Berita</a>

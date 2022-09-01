@@ -66,17 +66,18 @@
     <div class="bg-f7">
         <div class="container pb-5">
             <div class="row">
-                @for ($i = 0; $i < 9; $i++) <div class="col-md-6 col-lg-4 mb-4">
-                    <a href="{{url('/merch/{id}')}}" class="text-reset text-decoration-none">
+                @foreach ( $data as $p )
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <a href="/showmerch/{{ $p->id }}" class="text-reset text-decoration-none">
                         <div class="card rounded-4 p-2">
-                            <img src="{{ asset('assets/home/img/merchandise/img-product-1.png') }}" alt="" class="img-fluid">
+                            <img src="{{ asset('assets/home/img/'.$p->images) }}" alt="" class="img-fluid">
                             <div class="card-body text-center">
-                                <p class="fs-5">Baju Kebangkitan ekonomi Desa</p>
+                                <p class="fs-5">{{$p->nama_produk}}</p>
                             </div>
                             <div class="card-footer border-0 bg-transparent">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <h5 style="font-weight: 600;">Rp 80,000.00</h5>
+                                        <h5 style="font-weight: 600;">Rp. {{number_format($p->harga, 0,'', '.')}}</h5>
                                         <span class="badge text-danger me-1" style="background-color: rgba(255, 200, 200, 1)">15%</span>
                                         <span class="text-muted small text-decoration-line-through m-0 p-0">Rp 80,000.00</span>
                                     </div>
@@ -85,9 +86,9 @@
                             </div>
                         </div>
                         {{-- </a> --}}
+                </div>
+                @endforeach
             </div>
-            @endfor
         </div>
-    </div>
 </section>
 @endsection
