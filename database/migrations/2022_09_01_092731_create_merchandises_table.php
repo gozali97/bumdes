@@ -18,6 +18,7 @@ class CreateMerchandisesTable extends Migration
             $table->string('nama_produk');
             $table->string('details');
             $table->string('images');
+            $table->integer('slug_id');
             $table->integer('stok');
             $table->integer('harga');
             $table->timestamps();

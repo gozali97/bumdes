@@ -10,12 +10,15 @@ class MerchController extends Controller
 {
     public function index()
     {
-        // $data = Merchandise::all();
-        // dd($data);
-        return view('merchandise.index', [
-            'category' => CategoryMerchandise::all(),
-            'data' => Merchandise::with('categoryMerchandise')->filter(request(['search', 'category', 'sort']))->latest()->paginate(20)->withQueryString()
-        ]);
+        $category = CategoryMerchandise::all();
+        $data = Merchandise::with('categoryMerchandise')->filter(request(['search', 'category', 'sort']))->latest()->paginate(20)->withQueryString();
+        // dd($category);
+        return view('merchandise.index', compact('category', 'data'));
+        // [
+        //     'category' => CategoryMerchandise::all(),
+        //     // dd($category),
+        //     'data' => Merchandise::with('categoryMerchandise')->filter(request(['search', 'category', 'sort']))->latest()->paginate(20)->withQueryString()
+        // ]);
     }
 
     public function create()

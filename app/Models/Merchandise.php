@@ -51,6 +51,10 @@ class Merchandise extends Model
 
     public function categoryMerchandise()
     {
-        return $this->belongsTo(CategoryMerchandise::class);
+        return $this->belongsTo(CategoryMerchandise::class, 'slug_id', 'id');
     }
+
+    protected $casts = [
+        'images' => 'array',
+    ];
 }

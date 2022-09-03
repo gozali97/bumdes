@@ -7,6 +7,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoryProgramController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\CategoryMerchandiseController;
 use App\Http\Controllers\ArchivesController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\HomepageController;
@@ -24,7 +25,6 @@ use App\Http\Controllers\MerchandiseController;
 use App\Http\Controllers\MerchController;
 use App\Http\Controllers\NewslatterController;
 use App\Http\Controllers\RegisterTrainingController;
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -205,6 +205,16 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
             Route::get('/edit/{id}', [NewslatterController::class, 'edit'])->name('admin.newslatter.edit');
             Route::post('/update/{id}', [NewslatterController::class, 'update'])->name('admin.newslatter.update');
             Route::post('/delete/{id}', [NewslatterController::class, 'destroy'])->name('admin.newslatter.destroy');
+        });
+
+        //Kategori Merchandise
+        Route::group(['prefix' => '/category'], function () {
+            Route::get('/', [CategoryMerchandiseController::class, 'index'])->name('admin.category');
+            Route::get('/create', [CategoryMerchandiseController::class, 'create'])->name('admin.category.create');
+            Route::post('/input', [CategoryMerchandiseController::class, 'input'])->name('admin.category.input');
+            Route::get('/edit/{id}', [CategoryMerchandiseController::class, 'edit'])->name('admin.category.edit');
+            Route::post('/update/{id}', [CategoryMerchandiseController::class, 'update'])->name('admin.category.update');
+            Route::post('/delete/{id}', [CategoryMerchandiseController::class, 'destroy'])->name('admin.category.destroy');
         });
 
         //Merchandise

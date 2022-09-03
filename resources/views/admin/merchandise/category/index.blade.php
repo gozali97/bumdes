@@ -12,20 +12,49 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>List Merchandise</h1>
+                    <h1>List Slug Merchandise</h1>
                 </div>
             </div>
         </div>
     </section>
-    <section class="content">
+    <section class="content ml-5">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
+                <div class="col-10">
                     <div class="card">
                         <div class="card-header bg-card-primer">
-                            <h3 class="card-title">Tambah Merchandise</h3>
+                            <h3 class="card-title">Tambah Slug Merchandise</h3>
                             <div class="card-tools">
-                                <a href="{{ route('admin.merch.create') }}" class="btn btn-print"><i class="fas fa-plus"></i> Tambah</a>
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Tambah</button>
+
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="exampleModalLabel">Tambah Kategori</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form accept-charset="UTF-8" action="{{ route('admin.category.input') }}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label class="col-form-label">Kategori</label>
+                                                        <input type="text" class="form-control" name="slug">
+                                                    </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- <a href="{{ route('admin.category.create') }}" class="btn btn-print"><i class="fas fa-plus"></i> Tambah</a> --}}
+
                             </div>
                         </div>
                         <div class="card-body">
@@ -33,30 +62,22 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama</th>
-                                        {{-- <th>SLug</th> --}}
-                                        <th>Stok</th>
-                                        <th>Gambar</th>
-                                        <th>Detail Produk</th>
+                                        <th>Slug</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($merchandise as $merch)
+                                    @foreach ($data as $category)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $merch->nama_produk }}</td>
-                                        {{-- <td>{{ $merch->categoryMerchandise->slug }}</td> --}}
-                                        <td>{{ $merch->stok }}</td>
-                                        <td><img style="height: 70px;width: 70%" src="{{$merch->images[0]}}" alt=""></td>
-                                        <td>{!! $merch->details !!}</td>
+                                        <td>{{ $category->slug }}</td>
                                         <td>
                                             <div class="row">
 
                                                 <div class="d-grid gap-2 d-md-block">
 
-                                                    <a href="{{ route('admin.merch.edit', $merch->id) }}" class="btn btn-warning"><i class=" fas fa-edit"></i></a>
-                                                    <button id="delete" data-title="{{ $merch->name }}" href="{{ route('admin.merch.destroy', $merch->id) }}" class=" btn btn-icon btn-outline-danger"><i class="fas fa-trash"></i></span></button>
+                                                    <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-warning"><i class=" fas fa-edit"></i></a>
+                                                    <button id="delete" data-title="{{ $category->name }}" href="{{ route('admin.category.destroy', $category->id) }}" class=" btn btn-icon btn-outline-danger"><i class="fas fa-trash"></i></span></button>
 
                                                     <form action="" method="POST" id="deleteForm">
                                                         @csrf

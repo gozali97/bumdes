@@ -38,7 +38,7 @@
                             <select class="form-select rounded-4" id="category" name="category">
                                 <option value="">Semua Kategori</option>
                                 @foreach ($category as $kategori)
-                                <option value="{{ $kategori->slug }}" {{ request()->kategori == $kategori->slug ? 'selected' : '' }}>{{ $kategori->nama_produk }}</option>
+                                <option value="{{ $kategori->id }}" {{ request()->kategori == $kategori->id ? 'selected' : '' }}>{{ $kategori->slug }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -70,16 +70,16 @@
                 <div class="col-md-6 col-lg-4 mb-4">
                     <a href="/showmerch/{{ $p->id }}" class="text-reset text-decoration-none">
                         <div class="card rounded-4 p-2">
-                            <img src="{{ asset('assets/home/img/merchandise/'.$p->images) }}" alt="" class="img-fluid">
-                            <div class="card-body text-center">
-                                <p class="fs-5">{{$p->nama_produk}}</p>
+                            <img src="{{$p->images[0]}}" alt="" class="img-fluid">
+                            <div class="card-body">
+                                <p>{{$p->nama_produk}}</p>
                             </div>
                             <div class="card-footer border-0 bg-transparent">
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <h5 style="font-weight: 600;">Rp. {{number_format($p->harga, 0,'', '.')}}</h5>
                                         <span class="badge text-danger me-1" style="background-color: rgba(255, 200, 200, 1)">15%</span>
-                                        <span class="text-muted small text-decoration-line-through m-0 p-0">Rp 80,000.00</span>
+                                        <span class="text-muted small text-decoration-line-through m-0 p-0">Rp. {{number_format($p->harga, 0,'', '.')}}</span>
                                     </div>
                                     <a href=""><img src="{{ asset('assets/home/img/merchandise/logo-cart.png') }}" alt=""></a>
                                 </div>

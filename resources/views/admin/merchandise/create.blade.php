@@ -45,12 +45,18 @@
                                             </p>
                                             @endif
                                         </div>
-                                        <div class="form-group {{ $errors->has('slug') ? 'has-error' : '' }}">
+                                        <div class="form-group {{ $errors->has('slug_id') ? 'has-error' : '' }}">
                                             <label class="text-success" for="slug">Slug</label>
-                                            <input type="text" name="slug" class="form-control border" id="slug" value="{{ old('slug') }}" placeholder="Slug">
-                                            @if ($errors->has('slug'))
+                                            <select class="form-control" name="slug_id">
+                                                <option selected>-- Pilih Kategori --</option>
+                                                @foreach ( $slug as $category)
+                                                <option value="{{$category->id}}">{{$category->slug}}</option>
+                                                @endforeach
+                                            </select>
+                                            {{-- <input type="text" name="slug" class="form-control border" id="slug" value="{{ old('slug') }}" placeholder="Slug"> --}}
+                                            @if ($errors->has('slug_id'))
                                             <p class="alert alert-warning ">
-                                                {{ $errors->first('slug') }}
+                                                {{ $errors->first('slug_id') }}
                                             </p>
                                             @endif
                                         </div>
@@ -88,7 +94,7 @@
                                 <hr>
                                 <div class="form-group mt-3">
                                     <label class="text-success">Pilih Gambar</label>
-                                    <input class="btn btn-success" type="file" name="images">
+                                    <input class="btn btn-success" type="file" name="images[]" multiple accept="image/*">
                                     @if ($errors->has('images'))
                                     <p class="alert alert-warning ">
                                         {{ $errors->first('images') }}

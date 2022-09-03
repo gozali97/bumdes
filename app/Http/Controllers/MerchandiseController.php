@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CategoryMerchandise;
 use App\Models\Merchandise;
+use App\Models\MerchandiseDetails;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\File;
@@ -15,37 +16,49 @@ class MerchandiseController extends Controller
     public function index()
     {
         $Merchandise = Merchandise::orderBy('id', 'asc')->get();
-        return view('admin.merchandise.index')->with(['merchandise' => $Merchandise]);;
+        $category = CategoryMerchandise::all();
+        // dd($Merchandise);
+        return view('admin.merchandise.index')->with(['merchandise' => $Merchandise, 'category' => $category]);;
     }
 
     public function create()
     {
-        return view('admin.merchandise.create');
+        $slug = CategoryMerchandise::all();
+        return view('admin.merchandise.create', compact('slug'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'nama_produk'                =>  'required',
-            'slug'              =>  'required',
-            'stok'         =>  'required',
+            'details'         =>  'required',
+            'images'         =>  'required',
+            'slug_id'              =>  'required',
             'harga'         =>  'required',
             'stok'         =>  'required',
-            'details'         =>  'required',
-            'images'                =>  'required',
         ]);
-
-
-        $input = $request->all();
-
-        if ($file = $request->file('images')) {
-            $destinationFile = 'assets/home/img/merchandise/';
-            $profileFile =  $file->getClientOriginalName();
-            $file->move($destinationFile, $profileFile);
-            $input['images'] = "$profileFile";
+        if ($request->hasFile('images')) {
+            // $request->file('gambar')->move('imgmenu/', $request->file('gambar')->getClientOriginalName());
+            // $data->gambar = $request->file('gambar')->getClientOriginalName();
+            // $data->save();
+            $arrImage = array();
+            $images = $request->file('images');
+            // dd($images);
+            foreach ($images as $image) {
+                $name = $image->getClientOriginalName();
+                $path = $image->move('assets/home/img/merchandise', $name);
+                array_push($arrImage, '/' . $path);
+            }
+            // dd($arrImage);
+            Merchandise::create([
+                'nama_produk' => $request->nama_produk,
+                'slug_id' => $request->slug_id,
+                'details' => $request->details,
+                'images' => $arrImage,
+                'harga' => $request->harga,
+                'stok' => $request->stok,
+            ]);
         }
-
-        Merchandise::create($input);
 
         return redirect()->route('admin.merch')->with('success', 'You have successfully created a newslatter.');
     }
@@ -60,6 +73,7 @@ class MerchandiseController extends Controller
 
     public function update(Request $request)
     {
+
         $request->validate([
             'nama_produk'                =>  'required',
             'slug'              =>  'required',

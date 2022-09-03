@@ -10,8 +10,8 @@ class CategoryMerchandise extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function documents()
+    public function merch()
     {
-        return $this->hasMany(Merchandise::class);
+        return $this->hasMany(Merchandise::class, 'id', 'slug_id    ');
     }
 }

@@ -39,12 +39,29 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.merch') }}" class="nav-link" style="color: white;">
-                        <i class="nav-icon fas fa-business-time"></i>
+                    <a href="#" class="nav-link" style="color: white;">
+                        <i class="nav-icon fas fas fa-business-time"></i>
                         <p>
                             Merchandise
+                            <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.category') }}" class="nav-link text-warning">
+                                <i class="nav-icon fas fa-table nav-icon"></i>
+                                <p>
+                                    Kategori
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.merch') }}" class="nav-link text-warning">
+                                <i class="nav-icon fas fa-archive nav-icon"></i>
+                                <p>Produk</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" style="color: white;">
