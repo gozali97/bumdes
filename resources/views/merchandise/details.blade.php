@@ -77,8 +77,8 @@
                     <hr>
                     <ul class="list-inline">
                         <li class="list-inline-item">Tersedia :</li>
-                        <li class="list-inline-item" style="margin-left: -10px"><a type="button" href="#" class="btn btn-sm"><img src="http://127.0.0.1:8000/assets/home/img/merchandise/shopee.png" alt=""></a></li>
-                        <li class="list-inline-item" style="margin-left: -30px"><a type="button" href="#" class="btn btn-sm"><img src="http://127.0.0.1:8000/assets/home/img/merchandise/tokped.png" alt=""></a></li>
+                        <li class="list-inline-item" style="margin-left: -10px"><a type="button" href="https://shopee.co.id/bumdes.id" class="btn btn-sm"><img src="http://127.0.0.1:8000/assets/home/img/merchandise/shopee.png" alt=""></a></li>
+                        <li class="list-inline-item" style="margin-left: -30px"><a type="button" href="https://www.tokopedia.com/bumdesid" class="btn btn-sm"><img src="http://127.0.0.1:8000/assets/home/img/merchandise/tokped.png" alt=""></a></li>
                     </ul>
                     <hr>
                     <div class="mt-4">

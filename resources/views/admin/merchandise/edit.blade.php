@@ -94,7 +94,7 @@
                                 <hr>
                                 <div class="form-group mt-3">
                                     <label class="text-success">Pilih Gambar</label>
-                                    <input class="btn btn-success" type="file" name="images">
+                                    <input class="btn btn-success" type="file" name="images[]" multiple accept="image/*">
                                     @if ($errors->has('images'))
                                     <p class="alert alert-warning ">
                                         {{ $errors->first('images') }}
