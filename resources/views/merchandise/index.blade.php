@@ -38,7 +38,7 @@
                             <select class="form-select rounded-4" id="category" name="category">
                                 <option value="">Semua Kategori</option>
                                 @foreach ($category as $kategori)
-                                <option value="{{ $kategori->id }}" {{ request()->kategori == $kategori->id ? 'selected' : '' }}>{{ $kategori->slug }}</option>
+                                <option value="{{ $kategori->slug }}" {{ request()->kategori == $kategori->slug ? 'selected' : '' }}>{{ $kategori->slug }}</option>
                                 @endforeach
                             </select>
                         </div>

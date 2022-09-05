@@ -12,6 +12,6 @@ class CategoryMerchandise extends Model
 
     public function merch()
     {
-        return $this->hasMany(Merchandise::class, 'id', 'slug_id    ');
+        return $this->hasMany(Merchandise::class, 'slug', 'slug');
     }
 }

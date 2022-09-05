@@ -51,7 +51,7 @@ class Merchandise extends Model
 
     public function categoryMerchandise()
     {
-        return $this->belongsTo(CategoryMerchandise::class, 'slug_id', 'id');
+        return $this->belongsTo(CategoryMerchandise::class, 'slug', 'slug');
     }
 
     protected $casts = [

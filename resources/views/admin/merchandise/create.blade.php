@@ -45,18 +45,18 @@
                                             </p>
                                             @endif
                                         </div>
-                                        <div class="form-group {{ $errors->has('slug_id') ? 'has-error' : '' }}">
+                                        <div class="form-group {{ $errors->has('slug') ? 'has-error' : '' }}">
                                             <label class="text-success" for="slug">Slug</label>
-                                            <select class="form-control" name="slug_id">
+                                            <select class="form-control" name="slug">
                                                 <option selected>-- Pilih Kategori --</option>
                                                 @foreach ( $slug as $category)
-                                                <option value="{{$category->id}}">{{$category->slug}}</option>
+                                                <option value="{{$category->slug}}">{{$category->slug}}</option>
                                                 @endforeach
                                             </select>
                                             {{-- <input type="text" name="slug" class="form-control border" id="slug" value="{{ old('slug') }}" placeholder="Slug"> --}}
-                                            @if ($errors->has('slug_id'))
+                                            @if ($errors->has('slug'))
                                             <p class="alert alert-warning ">
-                                                {{ $errors->first('slug_id') }}
+                                                {{ $errors->first('slug') }}
                                             </p>
                                             @endif
                                         </div>

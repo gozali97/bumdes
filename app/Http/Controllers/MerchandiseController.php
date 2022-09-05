@@ -18,7 +18,7 @@ class MerchandiseController extends Controller
         $Merchandise = Merchandise::orderBy('id', 'asc')->get();
         $category = CategoryMerchandise::all();
         // dd($Merchandise);
-        return view('admin.merchandise.index')->with(['merchandise' => $Merchandise, 'category' => $category]);;
+        return view('admin.merchandise.index')->with(['merchandise' => $Merchandise, 'category' => $category]);
     }
 
     public function create()
@@ -33,7 +33,7 @@ class MerchandiseController extends Controller
             'nama_produk'                =>  'required',
             'details'         =>  'required',
             'images'         =>  'required',
-            'slug_id'              =>  'required',
+            'slug'              =>  'required',
             'harga'         =>  'required',
             'stok'         =>  'required',
         ]);
@@ -52,7 +52,7 @@ class MerchandiseController extends Controller
             // dd($arrImage);
             Merchandise::create([
                 'nama_produk' => $request->nama_produk,
-                'slug_id' => $request->slug_id,
+                'slug' => $request->slug,
                 'details' => $request->details,
                 'images' => $arrImage,
                 'harga' => $request->harga,
@@ -65,9 +65,11 @@ class MerchandiseController extends Controller
 
     public function edit($id)
     {
+        $slug = CategoryMerchandise::all();
         $merchandise = Merchandise::find($id);
         return view('admin.merchandise.edit', [
             'merchandise' => $merchandise,
+            'slug' => $slug,
         ]);
     }
 
@@ -77,7 +79,6 @@ class MerchandiseController extends Controller
         $request->validate([
             'nama_produk'                =>  'required',
             'slug'              =>  'required',
-            'stok'         =>  'required',
             'harga'         =>  'required',
             'stok'         =>  'required',
             'details'         =>  'required',
@@ -91,12 +92,16 @@ class MerchandiseController extends Controller
             $merchandise->harga = $request->harga;
             $merchandise->details = $request->details;
             if ($request->hasFile('images')) {
-                $this->deletNewslatter($merchandise);
-                if ($file = $request->file('images')) {
-                    $destinationFile = 'assets/home/img/merchandise/';
-                    $profile = $file->getClientOriginalName() . microtime();
-                    $file->move($destinationFile, $profile);
-                    $merchandise['images'] = "$profile";
+                $this->deleteMerch($merchandise);
+                if ($request->hasFile('images')) {
+                    $arrImage = array();
+                    $images = $request->file('images');
+                    // dd($images);
+                    foreach ($images as $image) {
+                        $name = $image->getClientOriginalName();
+                        $path = $image->move('assets/home/img/merchandise', $name);
+                        array_push($arrImage, '/' . $path);
+                    }
                 }
             }
             $merchandise->save();
@@ -131,5 +136,16 @@ class MerchandiseController extends Controller
     {
         $data = Merchandise::find($id);
         return view('merchandise.details', compact('data'));
+    }
+
+    private function deleteMerch($merchandise)
+    {
+        if ($merchandise->file) {
+            // $imgDestroy = 'public/images/banner/'.$banner->image;
+            $fileDestroy = 'assets/home/img/merchandise/' . $merchandise->file;
+            if (File::exists($fileDestroy)) {
+                File::delete($fileDestroy);
+            }
+        }
     }
 }

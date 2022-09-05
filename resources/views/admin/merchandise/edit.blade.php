@@ -47,7 +47,13 @@
                                         </div>
                                         <div class="form-group {{ $errors->has('slug') ? 'has-error' : '' }}">
                                             <label class="text-success" for="slug">Slug</label>
-                                            <input type="text" name="slug" class="form-control border" id="slug" value="{{ $merchandise->slug ?? old('slug') }}" placeholder="Slug">
+                                            <select class="form-control" name="slug">
+                                                <option selected>{{ $merchandise->slug }}</option>
+                                                @foreach ( $slug as $category)
+                                                <option value="{{$category->slug}}">{{$category->slug}}</option>
+                                                @endforeach
+                                            </select>
+                                            {{-- <input type="text" name="slug" class="form-control border" id="slug" value="{{ old('slug') }}" placeholder="Slug"> --}}
                                             @if ($errors->has('slug'))
                                             <p class="alert alert-warning ">
                                                 {{ $errors->first('slug') }}
