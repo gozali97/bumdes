@@ -12,7 +12,7 @@
 </style>
 <link rel="stylesheet" href="{{ url('assets/home/css/adminlte.min.css')}}">
 <!-- Content Wrapper. Contains page content -->
-<div class="wrapper p-5" style="background-color: #F5F5F5">
+<div class="wrapper p-4" style="background-color: #F5F5F5">
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -33,7 +33,26 @@
                     <div class="col-12 col-sm-6">
                         <h3 class="d-inline-block d-sm-none">{{$data->nama_produk}}</h3>
                         <div class="col-12">
-                            <img src="{{$data->images[0]}}" class="product-image" alt="Product Image">
+                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="{{$data->images[0]}}" class="product-image" alt="Product Image">
+                                    </div>
+                                    @foreach ( $data->images as $image)
+                                    <div class="carousel-item">
+                                        <img src="{{$image}}" class="product-image" alt="Product Image">
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
+                                    <span class="carousel-control-prev-icon bg-success" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
+                                    <span class="carousel-control-next-icon bg-success" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="col-12 product-image-thumbs">
                             @foreach ( $data->images as $image)
